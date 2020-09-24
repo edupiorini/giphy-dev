@@ -3,6 +3,8 @@ import 'package:giphy_dev/ui/gif_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:share/share.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -109,6 +111,10 @@ class _HomePageState extends State<HomePage> {
                     MaterialPageRoute(
                         builder: (context) =>
                             GifPage(snapshot.data["data"][index])));
+              },
+              onLongPress: () {
+                Share.share(snapshot.data["data"][index]["images"]
+                    ["fixed_height"]["url"]);
               },
             );
           else
